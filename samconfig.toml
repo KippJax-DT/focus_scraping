@@ -1,0 +1,30 @@
+# More information about the configuration file can be found here:
+# https://docs.aws.amazon.com/serverless-application-model/latest/developerguide/serverless-sam-cli-config.html
+version = 0.1
+
+[default]
+[default.global.parameters]
+resolve_s3=false
+
+
+[default.build.parameters]
+parallel = true
+resolve_s3=false
+
+
+[default.validate.parameters]
+lint = true
+
+[default.deploy.parameters]
+stack_name = "selenium-Focus"
+deployment_preference = "AllAtOnce"
+confirm_changeset = true
+region = "us-east-1"
+resolve_s3=true
+resolve_image_repos = true
+capabilities = "CAPABILITY_IAM"
+s3_prefix = "selenium-Focus"
+
+[default.package.parameters]
+resolve_s3 = false
+template_file = "template.yaml"

@@ -1,0 +1,34 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: AWS::Serverless-2016-10-31
+Description: >
+  Ridding of our daily Do's of pulling enrollment data and attendance Data from our Focus SIS. 
+
+
+# More info about Globals: https://github.com/awslabs/serverless-application-model/blob/master/docs/globals.rst
+Globals:
+  Function:
+    Timeout: 900
+    MemorySize: 10000
+
+Resources:
+  FocusWebScraping:
+    Type: AWS::Serverless::Function # More info about Function Resource: https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#awsserverlessfunction
+    Properties:
+      CodeUri: src/
+      PackageType: Image
+      Architectures:
+        - x86_64
+      Environment:
+        Variables:
+          attendance_url: ${attendance_page_url}
+          enrollment_url: ${enrollment_page_url
+          focus_username: ${username}
+          focus_password: ${password}
+          attendance_bucket: illuminate
+          enrollment_bucket: rostering-downloads
+          
+
+    Metadata:
+      Dockerfile: Dockerfile
+      DockerContext: ./src
+      DockerTag: template_build
